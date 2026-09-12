@@ -2,12 +2,14 @@
 
 Kit d’authentification HTTP **indépendant du métier**. Sessions Bearer, deux rôles (`administrator`, `usager`), administration des comptes. SQLite ou PostgreSQL.
 
+Dépôt : [https://github.com/baobabgit/auth-kit](https://github.com/baobabgit/auth-kit)
+
 ## Sous-module Git
 
-Ce répertoire est un paquet autonome. Dans un autre projet :
+Dans un autre projet :
 
 ```bash
-git submodule add <url-du-dépôt-auth-kit> vendor/auth-kit
+git submodule add https://github.com/baobabgit/auth-kit.git vendor/auth-kit
 git submodule update --init --recursive
 export PYTHONPATH="$PYTHONPATH:vendor/auth-kit/src"
 # ou : pip install -e vendor/auth-kit
@@ -17,18 +19,6 @@ Clone d’un hôte qui l’embarque déjà :
 
 ```bash
 git clone --recurse-submodules <url-du-projet-hôte>
-```
-
-Pour publier ce dossier vers un dépôt vide :
-
-```bash
-cd vendor/auth-kit   # ou depuis une copie extraite
-git init
-git add .
-git commit -m "Paquet auth-kit"
-git remote add origin <url-du-dépôt-auth-kit>
-git branch -M main
-git push -u origin main
 ```
 
 ## Hôte FastAPI
