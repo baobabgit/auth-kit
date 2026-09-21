@@ -28,6 +28,24 @@ class TestAuthRouter:
                 json={"identifier": "lea", "password": "pass", "role": "usager"},
             )
             lea_id = created.json()["id"]
+            nominatif = client.post(
+                "/users",
+                headers=headers,
+                json={
+                    "identifier": "marc",
+                    "password": "pass",
+                    "role": "analyste_nominatif",
+                },
+            )
+            assert nominatif.status_code == 200
+            assert nominatif.json()["role"] == "analyste_nominatif"
+            marc_session = client.post(
+                "/login", json={"identifier": "marc", "password": "pass"}
+            )
+            marc_headers = {
+                "Authorization": f"Bearer {marc_session.json()['token']}"
+            }
+            assert client.get("/users", headers=marc_headers).status_code == 403
             assert client.get("/users", headers=headers).status_code == 200
             assert client.post(
                 "/users",

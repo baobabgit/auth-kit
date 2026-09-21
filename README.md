@@ -1,6 +1,6 @@
 # Auth Kit
 
-Kit d’authentification HTTP **indépendant du métier**. Sessions Bearer, deux rôles (`administrator`, `usager`), administration des comptes. SQLite ou PostgreSQL.
+Kit d’authentification HTTP **indépendant du métier**. Sessions Bearer, trois rôles (`administrator`, `analyste_nominatif`, `usager`), administration des comptes. SQLite ou PostgreSQL.
 
 Dépôt : [https://github.com/baobabgit/auth-kit](https://github.com/baobabgit/auth-kit)
 
@@ -70,7 +70,8 @@ Les autres services envoient `Authorization: Bearer <token>` et appellent `GET /
 | `GET` `/POST` | `/users` | administrateur |
 | `PATCH` | `/users/{id}` | administrateur |
 
-Rôles : `administrator`, `usager`. On ne peut pas retirer le dernier administrateur actif.
+Rôles : `administrator`, `analyste_nominatif`, `usager`. Seul `administrator`
+gère les comptes. On ne peut pas retirer le dernier administrateur actif.
 
 ## Tests
 
